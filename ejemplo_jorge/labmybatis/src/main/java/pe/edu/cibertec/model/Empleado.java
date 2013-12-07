@@ -12,11 +12,10 @@ import javax.inject.Named;
  *
  * @author Jorge
  */
+@Named
+@RequestScoped
+public class Empleado implements Serializable {
 
-    @Named
-    @RequestScoped
-public class Empleado implements Serializable{
-    
     private Integer codigo;
     private String nombre;
     private String apellido;
@@ -49,8 +48,4 @@ public class Empleado implements Serializable{
     public String toString() {
         return "Empleado{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellido=" + apellido + '}';
     }
-    
-    
-    
-    
 }

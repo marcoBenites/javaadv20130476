@@ -9,14 +9,16 @@
     <h:body>
         <h:form>
             <br/>
+            <h:inputHidden value="#{empleado.codigo}" rendered="#{empleadoBean.flag}" />
             <h:outputText value="Nombre:"/>
             <h:inputText value="#{empleado.nombre}" />
             <br/>
-             <h:outputText value="Apellidos:"/>
+            <h:outputText value="Apellidos:"/>
             <h:inputText value="#{empleado.apellido}" />
             <br/>
-            <h:commandButton value="Grabar" action="#{empleadoBean.insertar(empleado)}" />
-            <h:commandButton value="listar" action="#{empleadoBean.listarTodos()}"  />
+            <h:commandButton value="Modificar" action="#{empleadoBean.modificar(empleado)}" rendered="#{empleadoBean.flag}" />
+            <h:commandButton value="Insertar" action="#{empleadoBean.insertar(empleado)}" rendered="#{not empleadoBean.flag}" />
+
             <h:dataTable value="#{empleadoBean.listaEmpleado}" var="item">
                 <h:column>
                     <f:facet name="header">
@@ -39,19 +41,13 @@
                 <h:column>
                     <h:commandLink onclick="return confirm('Desea eliminar?');" action="#{empleadoBean.eliminar(item)}" value="Eliminar" />
                 </h:column>
-                 <h:column>
+                <h:column>
                     <h:commandLink  action="#{empleadoBean.buscarByEmpleado(item)}" value="editar" />
                 </h:column>
             </h:dataTable>
-            
-            <h:outputText value="Nombre:"  rendered="#{empleadoBean.flag}"/>
-            <h:inputText value="#{empleadoBean.empleado.nombre}" rendered="#{empleadoBean.flag}"/>
-            <br/>
-             <h:outputText value="Apellidos:" rendered="#{empleadoBean.flag}"/>
-            <h:inputText value="#{empleadoBean.empleado.apellido}" rendered="#{empleadoBean.flag}"/>
-            <br/>
-            <h:commandButton value="Grabar" action="#{empleadoBean.modificar(empleadoBean.empleado)}" rendered="#{empleadoBean.flag}"/>
-            
+
+
+
         </h:form>
     </h:body>
 </html>
