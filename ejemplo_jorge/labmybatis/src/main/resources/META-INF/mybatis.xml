@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties
+        resource="META-INF/mybatis.properties" />
+    <typeAliases>
+        <typeAlias alias="Ciudad" type="pe.edu.cibertec.model.Ciudad" />
+        <typeAlias alias="Cliente" type="pe.edu.cibertec.model.Cliente" />
+        <typeAlias alias="Empleado" type="pe.edu.cibertec.model.Empleado" />
+    </typeAliases>
+    <environments default="pikachu">
+        <environment id="pikachu">
+            <transactionManager type="JDBC" />
+            <dataSource type="JNDI">
+                <property name="data_source" value="java:/jdbc/datDS" />
+            </dataSource>
+        </environment>
+        <environment id="bulbasaur">
+            <transactionManager type="JDBC" />
+            <dataSource type="JNDI">
+                <property name="data_source" value="java:/jdbc/datDSBulbasaur" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--<mapper resource="pe/edu/cibertec/model/CiudadMapper.xml" />-->
+        <!--<mapper resource="pe/edu/cibertec/model/ClienteMapper.xml" />-->
+        <mapper resource="pe/edu/cibertec/model/EmpleadoMapper.xml" />
+    </mappers>
+</configuration>

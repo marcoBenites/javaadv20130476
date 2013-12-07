@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <br/>
+            <h:outputText value="Nombre:"/>
+            <h:inputText value="#{empleado.nombre}" />
+            <br/>
+             <h:outputText value="Apellidos:"/>
+            <h:inputText value="#{empleado.apellido}" />
+            <br/>
+            <h:commandButton value="Grabar" action="#{empleadoBean.insertar(empleado)}" />
+            <h:commandButton value="listar" action="#{empleadoBean.listarTodos()}"  />
+            <h:dataTable value="#{empleadoBean.listaEmpleado}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Codigo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codigo}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descripcion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombre}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="apellido"/>
+                    </f:facet>
+                    <h:outputText value="#{item.apellido}" />
+                </h:column>
+                <h:column>
+                    <h:commandLink onclick="return confirm('Desea eliminar?');" action="#{empleadoBean.eliminar(item)}" value="Eliminar" />
+                </h:column>
+                 <h:column>
+                    <h:commandLink  action="#{empleadoBean.buscarByEmpleado(item)}" value="editar" />
+                </h:column>
+            </h:dataTable>
+            
+            <h:outputText value="Nombre:"  rendered="#{empleadoBean.flag}"/>
+            <h:inputText value="#{empleadoBean.empleado.nombre}" rendered="#{empleadoBean.flag}"/>
+            <br/>
+             <h:outputText value="Apellidos:" rendered="#{empleadoBean.flag}"/>
+            <h:inputText value="#{empleadoBean.empleado.apellido}" rendered="#{empleadoBean.flag}"/>
+            <br/>
+            <h:commandButton value="Grabar" action="#{empleadoBean.modificar(empleadoBean.empleado)}" rendered="#{empleadoBean.flag}"/>
+            
+        </h:form>
+    </h:body>
+</html>
+
