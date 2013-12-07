@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditNoticiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{noticiaController.selected.id}" title="#{bundle.EditNoticiaTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{noticiaController.selected.titulo}" title="#{bundle.EditNoticiaTitle_titulo}" />
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_encabezado}" for="encabezado" />
+                    <h:inputText id="encabezado" value="#{noticiaController.selected.encabezado}" title="#{bundle.EditNoticiaTitle_encabezado}" />
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_cuerpo}" for="cuerpo" />
+                    <h:inputText id="cuerpo" value="#{noticiaController.selected.cuerpo}" title="#{bundle.EditNoticiaTitle_cuerpo}" />
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_autor}" for="autor" />
+                    <h:selectOneMenu id="autor" value="#{noticiaController.selected.autor}" title="#{bundle.EditNoticiaTitle_autor}" >
+                        <f:selectItems value="#{periodistaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{noticiaController.selected.fecha}" title="#{bundle.EditNoticiaTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditNoticiaLabel_palabrasClave}" for="palabrasClave" />
+                    <h:inputText id="palabrasClave" value="#{noticiaController.selected.palabrasClave}" title="#{bundle.EditNoticiaTitle_palabrasClave}" />
+                </h:panelGrid>
+                <h:commandLink action="#{noticiaController.update}" value="#{bundle.EditNoticiaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditNoticiaViewLink}"/>
+                <br />
+                <h:commandLink action="#{noticiaController.prepareList}" value="#{bundle.EditNoticiaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditNoticiaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

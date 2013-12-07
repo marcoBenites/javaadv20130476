@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>#{msjs.login_titulo}</title>
+    </h:head>
+    <h:body>
+        <div style="margin: 0 auto; width: 400px; height: 200px;">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        #{msjs.login_titulo}
+                    </f:facet>
+
+                    <p:outputLabel value="#{msjs.login_lblUsuario}"/>
+                    <p:inputText value="#{usuarioBean.usuario.nomUser}"/>
+                    <p:outputLabel value="#{msjs.login_lblClave}"/>
+                    <p:password value="#{usuarioBean.usuario.passUser}"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton action="#{usuarioBean.iniciarSesion()}" value="#{msjs.login_btnAceptar}"
+                                         ajax="false"/>
+                        <p:commandButton value="#{msjs.btnCancelar}"
+                                         ajax="false"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </div>
+        
+    </h:body>
+</html>

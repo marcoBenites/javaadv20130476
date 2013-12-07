@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/template.xhtml">
+
+            <ui:define name="content">
+                <h1>#{msjs.tema_titulo}</h1>
+                <h:form>
+                    <p:panelGrid columns="3">
+                        <p:outputLabel value="#{msjs.tema_lblBuscar}"/>
+                        <p:inputText />
+                        <p:commandButton value="#{msjs.btnBuscar}"/>
+                    </p:panelGrid>
+                    
+                    <p:dataGrid var="dgTemas" paginator="true"
+                                rowsPerPageTemplate="10,25,50" columns="5">
+                    </p:dataGrid>
+                    
+                    <p:panelGrid columns="2">
+                        <p:commandButton  value="#{msjs.btnNuevo}" onclick="PF('frmRegistro').show();"/>
+                        <p:commandButton  value="#{msjs.btnModificar}"/>
+                    </p:panelGrid>
+                    
+                    <p:dialog id="frmRegistro" header="#{msjs.tema_tituloRegistro}" widgetVar="frmRegistro">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="#{msjs.tema_curso}"/>
+                            <p:inputText />
+                            <p:outputLabel value="#{msjs.tema_unidad}"/>
+                            <p:inputText />
+                            <p:outputLabel value="#{msjs.tema_nombre}"/>
+                            <p:inputText />
+                            <p:outputLabel value="#{msjs.tema_capitulo}"/>
+                            <p:inputText />
+                        </p:panelGrid>
+                        
+                        <f:facet name="footer">
+                            <p:commandButton value="#{msjs.btnGrabar}"/>
+                            <p:commandButton value="#{msjs.btnCancelar}"/>
+                        </f:facet>
+                    </p:dialog>
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
