@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="Nombre:"/>
+            <h:inputText value="#{ciudad.descripcion}" />
+            <h:commandButton value="Grabar" action="#{ciudadBean.grabar(ciudad)}" />
+            
+            <h:dataTable value="#{ciudadBean.list}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Codigo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codigo}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descripcion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}" />
+                </h:column>
+                <h:column>
+                    <h:commandLink onclick="return confirm('Desea eliminar?');" action="#{ciudadBean.eliminar(item)}" value="Eliminar" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties
+        resource="META-INF/mybatis.properties" />
+    <typeAliases>
+        <typeAlias alias="Ciudad" type="pe.edu.cibertec.model.Ciudad" />
+        <typeAlias alias="Cliente" type="pe.edu.cibertec.model.Cliente" />
+    </typeAliases>
+    <environments default="pikachu">
+        <environment id="pikachu">
+            <transactionManager type="JDBC" />
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="pe/edu/cibertec/model/CiudadMapper.xml" />
+        <mapper resource="pe/edu/cibertec/model/ClienteMapper.xml" />
+    </mappers>
+</configuration>

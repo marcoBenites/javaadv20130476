@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.edu.cibertec.data.mapper.ClienteMapper">
+    <resultMap id="clienteRM" type="Cliente">
+        <id column="IDENTIFIER" property="codigo" />
+        <result column="FIRSTNAME" property="nombre" />
+        <result column="LASTNAME" property="apellido" />
+        <result column="ADDRESS" property="direccion" />
+        <result column="POSTALCODE" property="codigoPostal" />
+        <result column="RECORDDATE" property="fechaRegistro" />
+        <result column="VERIFYDATE" property="fechaVerificacion"/>
+        <association property="ciudad" javaType="Ciudad" resultMap="ciudadRM" />
+    </resultMap>
+    <resultMap id="ciudadRM" type="Ciudad">
+        <id column="CITY" property="codigo" />
+        <result column="CITY_DESCRIPTION" property="descripcion" />
+    </resultMap>
+    
+</mapper>
