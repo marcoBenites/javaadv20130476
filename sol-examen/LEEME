@@ -1,0 +1,3 @@
+-- cadena de conexion jdbc:mysql://localhost:3306/examenmod3?zeroDateTimeBehavior=convertToNull
+-- nombre jndi java:/jdbc/examenmod3
+
