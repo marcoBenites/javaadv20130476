@@ -14,31 +14,31 @@ public class AsistenciaImpl implements Asistencia {
 
     @Override
     public ClassEvent findClassEvent(Date date, String teacherCode) {
-        //validar si el codigo de profesor pertenece a un
-        //profesor... buscar el profesor
-
-        Teacher teacher = teacherDao.find(teacherCode);
-        
-        if (teacher == null) {
-            //o emitir una excapcion
-            return null;
-        }
-        
-        //TODO terminar
-        Event event = eventDao.findForTeacherAndDate(teacher, date);
-        
-        
-        
-        EventPupilList epl = eplDao.find(event);
-
-        //marcar asistencia para el profesor
-        Date checkInDate = checkInDao.check(teacher);
-        
-        ClassEvent classEvent = new ClassEvent();
-        classEvent.setBegin(event.getBegin());
-        classEvent.setEnd(event.getEnd());
-        //TODO terminar el traspaso de datos
-        
+//        //validar si el codigo de profesor pertenece a un
+//        //profesor... buscar el profesor
+//
+//        Teacher teacher = teacherDao.find(teacherCode);
+//        
+//        if (teacher == null) {
+//            //o emitir una excapcion
+//            return null;
+//        }
+//        
+//        //TODO terminar
+//        Event event = eventDao.findForTeacherAndDate(teacher, date);
+//        
+//        
+//        
+//        EventPupilList epl = eplDao.find(event);
+//
+//        //marcar asistencia para el profesor
+//        Date checkInDate = checkInDao.check(teacher);
+//        
+//        ClassEvent classEvent = new ClassEvent();
+//        classEvent.setBegin(event.getBegin());
+//        classEvent.setEnd(event.getEnd());
+//        //TODO terminar el traspaso de datos
+//        
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
