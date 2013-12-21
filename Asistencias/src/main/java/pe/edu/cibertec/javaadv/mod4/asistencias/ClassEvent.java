@@ -13,6 +13,9 @@ import java.util.List;
  */
 public class ClassEvent {
 
+    private Date firstTime;
+    private Date dueTime;
+    private Date teacherChekinTime;
     private Date begin;
     private Date end;
     private Teacher teacher;
@@ -66,5 +69,29 @@ public class ClassEvent {
 
     public void setDetails(List<ClassEventDetail> details) {
         this.details = details;
+    }
+
+    public Date getFirstTime() {
+        return firstTime;
+    }
+
+    public void setFirstTime(Date firstTime) {
+        this.firstTime = firstTime;
+    }
+
+    public Date getDueTime() {
+        return dueTime;
+    }
+
+    public void setDueTime(Date dueTime) {
+        this.dueTime = dueTime;
+    }
+
+    public Date getTeacherChekinTime() {
+        return teacherChekinTime;
+    }
+
+    public void setTeacherChekinTime(Date teacherChekinTime) {
+        this.teacherChekinTime = teacherChekinTime;
     }
 }
