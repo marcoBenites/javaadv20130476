@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" >
+            $(document).ready(function(){
+                $(".jsf , .rest").css("display","none");
+                $("input.JSF").click(function(){
+                    $(".rest").css("display","none");
+                    $(".jsf").css("display","");
+                });
+                $("input.REST").click(function(){
+                    $(".jsf").css("display","none");
+                    $(".rest").css("display","");
+                });
+                $("input[type=button].rest").click(function(){
+                    $.getJSON(
+                        "LoginServlet",
+                        {
+                            user:$(".user").val(),
+                            password:$(".password").val()
+                        },
+                        function(data){
+                            if (data.response){
+                                window.location="yeah.xhtml";
+                            } else {
+                                window.location="buh.xhtml";
+                            }
+                        }
+                    );
+                });
+            });
+        </script>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div>
+                <input type="radio" name="mode" class="JSF" />
+                <span>JSF</span>
+            </div>
+            <div>
+                <input type="radio" name="mode" class="REST" />
+                <span>REST</span>
+            </div>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="user" value="User:" />
+                <h:inputText id="user" class="user" value="#{loginController.user}" />
+                <h:outputLabel for="password" value="Password:" />
+                <h:inputSecret id="password" class="password" value="#{loginController.password}" />
+                <h:panelGroup></h:panelGroup>
+                <h:panelGroup>
+                    <!-- envia datos por formulario -->
+                    <h:commandButton class="jsf" value="Login JSF" action="#{loginController.login()}" />
+                    <!-- envia datos por rest -->
+                    <input type="button" class="rest" value="Login Rest" />
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

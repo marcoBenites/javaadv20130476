@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             boolean success = login.validate(credential);
             /* TODO output your page here. You may use following sample code. */
             out.println("{");
-            out.println("response:" + success);
+            out.println("\"response\":" + success);
             out.println("}");
             out.flush();
         }
