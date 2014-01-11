@@ -2,15 +2,29 @@
 <beans
     xmlns="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">      
     
+    <aop:aspectj-autoproxy />
     
     <bean
         id="loginService"
         class="pe.edu.cibertec.javaadv.mod4.asistencias.LoginImpl">
     </bean>
-    
+    <bean
+        id="logAspect"
+        class="pe.edu.cibertec.javaadv.mod4.asistencias.aspect.LogAspect">
+    </bean>
+    <bean
+        id="logAspectImpl"
+        class="pe.edu.cibertec.javaadv.mod4.asistencias.aspect.LogAspectImpl">
+    </bean>
+    <bean
+        id="loginAspect"
+        class="pe.edu.cibertec.javaadv.mod4.asistencias.aspect.LoginAspect">
+    </bean>
 </beans>
