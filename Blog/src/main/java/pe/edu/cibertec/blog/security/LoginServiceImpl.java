@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.security;
 
 /**
  *
  * @author JAVA-ADV
  */
-public interface LoginService {
+public class LoginServiceImpl implements LoginService {
 
-    boolean authenticate(String user, String password);
+    public boolean authenticate(String user, String password) {
+        return user.equals("carlos");
+    }
 
 }

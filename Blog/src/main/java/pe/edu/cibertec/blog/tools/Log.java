@@ -1,9 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.tools;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.ElementType.METHOD;
@@ -21,5 +20,5 @@ import javax.interceptor.InterceptorBinding;
 @InterceptorBinding
 @Retention(RUNTIME)
 @Target({METHOD, TYPE})
-public @interface Restrict {
+public @interface Log {
 }

@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
-
-import java.util.List;
+package pe.edu.cibertec.blog.security;
 
 /**
  *
  * @author JAVA-ADV
  */
-public interface BlogDomain {
+public interface AutorizationManager {
 
-    List<BlogEntry> getEntries(String usuer);
+    boolean isAuthorized(String[] access);
 
-    void addEntry(String usuer, BlogEntry entry);
+    boolean isAuthorized(String access);
 
 }

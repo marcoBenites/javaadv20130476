@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.service;
 
+import pe.edu.cibertec.blog.domain.BlogEntry;
+import pe.edu.cibertec.blog.domain.BlogDomain;
+import pe.edu.cibertec.blog.tools.Log;
+import pe.edu.cibertec.blog.security.Restrict;
+import pe.edu.cibertec.blog.security.Requires;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ws.rs.core.Context;
@@ -15,8 +20,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.PathParam;
+import pe.edu.cibertec.blog.security.IdentityManager;
+import pe.edu.cibertec.blog.security.LoggedIn;
 
 /**
  * REST Web Service
@@ -33,7 +39,7 @@ public class BlogResource {
     BlogDomain domain;
 
     @Inject
-    HttpServletRequest request;
+    IdentityManager identity;
 
     @Context
     private UriInfo context;
@@ -52,9 +58,9 @@ public class BlogResource {
      */
     @GET
     @Produces("application/json")
+    @LoggedIn
     public List<BlogEntry> find() {
-        String user = (String) request.getAttribute("user");
-        return domain.getEntries(user);
+        return domain.getEntries(identity.getUser());
     }
 
     @GET
@@ -75,8 +81,7 @@ public class BlogResource {
     @Consumes("application/json")
     @Requires("operation(addEntry)")
     public void addEntry(@PathParam("user") String user, BlogEntry content) {
-        String auth_user = (String) request.getSession().getAttribute("user");
-        if (user.equals(auth_user)) {
+        if (user.equals(identity.getUser())) {
             domain.addEntry(user, content);
         }
     }

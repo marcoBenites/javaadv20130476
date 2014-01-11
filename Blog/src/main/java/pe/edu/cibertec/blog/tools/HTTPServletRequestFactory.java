@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.tools;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;

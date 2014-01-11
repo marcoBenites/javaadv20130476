@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.security;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -20,7 +20,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Inherited
 @Documented
-public @interface Requires {
-
-    String value();
+public @interface LoggedIn {
 }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.domain;
 
+import pe.edu.cibertec.blog.tools.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.security;
 
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,7 +19,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,12 +29,12 @@ public class SecurityFilter implements Filter {
 
     private static final boolean debug = true;
 
-    private LoginService loginService;
+    @Inject
+    IdentityManager identity;
 
     private FilterConfig filterConfig = null;
 
     public SecurityFilter() {
-        loginService = new LoginServiceImpl();
     }
 
     /**
@@ -52,37 +52,21 @@ public class SecurityFilter implements Filter {
             throws IOException, ServletException {
         Throwable problem = null;
         try {
-            HttpServletRequest r = (HttpServletRequest) request;
-            final HttpSession session = r.getSession();
-            //Al acceder a un recurso protegido validamos si hay session
-            if (session.getAttribute("authenticated") == null) {
-                boolean loggedIn = false;
-                final String user = request.getParameter("usuario");
-                final String password = request.getParameter("clave");
-                if (user != null && password != null) {
-                    loggedIn = this.loginService.authenticate(user, password);
-                }
-                if (loggedIn) {
-                    session.setAttribute("authenticated", Boolean.TRUE);
-                    //otras cosas que puede hacer con el usuario autenticado
-                    session.setAttribute("user", user);
-                    session.setAttribute("operation(addEntry)", Boolean.TRUE);
-                }
+            if (!identity.isLoggedIn()) {
+                identity.login();
             }
-            if (session.getAttribute("authenticated") != null) {
+            if (identity.isLoggedIn()) {
                 chain.doFilter(request, response);
             } else {
-                //no estas autenticado y debo redirigirte a otro lado
                 HttpServletResponse rs = (HttpServletResponse) response;
                 rs.sendError(403);
             }
         } catch (Throwable t) {
-            // If an exception is thrown somewhere down the filter chain,
-            // we still want to execute our after processing, and then
-            // rethrow the problem after that.
             problem = t;
             t.printStackTrace();
         }
+
+        ((HttpServletRequest) request).getSession().invalidate();
 
         // If there was a problem, we want to rethrow it if it is
         // a known type, otherwise log it.

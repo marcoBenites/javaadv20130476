@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pe.edu.cibertec.blog;
+package pe.edu.cibertec.blog.domain;
+
+import java.util.List;
 
 /**
  *
  * @author JAVA-ADV
  */
-public class BlogEntry {
+public interface BlogDomain {
+
+    List<BlogEntry> getEntries(String usuer);
+
+    void addEntry(String usuer, BlogEntry entry);
 
 }
