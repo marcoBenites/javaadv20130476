@@ -57,14 +57,16 @@ public class SecurityFilter implements Filter {
             //Al acceder a un recurso protegido validamos si hay session
             if (session.getAttribute("authenticated") == null) {
                 boolean loggedIn = false;
-                final String usuario = request.getParameter("usuario");
-                final String clave = request.getParameter("clave");
-                if (usuario != null && clave != null) {
-                    loggedIn = this.loginService.authenticate(usuario, clave);
+                final String user = request.getParameter("usuario");
+                final String password = request.getParameter("clave");
+                if (user != null && password != null) {
+                    loggedIn = this.loginService.authenticate(user, password);
                 }
                 if (loggedIn) {
                     session.setAttribute("authenticated", Boolean.TRUE);
                     //otras cosas que puede hacer con el usuario autenticado
+                    session.setAttribute("user", user);
+                    session.setAttribute("operation(addEntry)", Boolean.TRUE);
                 }
             }
             if (session.getAttribute("authenticated") != null) {
